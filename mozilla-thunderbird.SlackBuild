@@ -16,7 +16,7 @@ PKG=$TMP/package-mozilla-thunderbird
 # Thanks to the folks at the Mozilla Foundation for permission to
 # distribute this, and for all the great work!  :-)
 
-VERSION=1.5.0.2
+VERSION=1.5.0.4
 ARCH=i686
 LOCALE=bg
 BUILD=1
@@ -53,7 +53,7 @@ mkdir $PKG/install
 cp $CWD/slack-desc $PKG/install/slack-desc
 mkdir -p $PKG/usr/src/slackbuild/thunderbird
 cp $CWD/mozilla-thunderbird-simple.diff.gz $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird-simple.diff.gz
-cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird-firefox.diff.gz
+cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird-firefox.txt.gz
 cp $CWD/mozilla-thunderbird.SlackBuild $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird.SlackBuild
 cp $CWD/mozilla-thunderbird.desktop $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird.desktop
 cp $CWD/slack-desc $PKG/usr/src/slackbuild/thunderbird/slack-desc
@@ -63,6 +63,9 @@ cd $PKG
 makepkg -l y -c n $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz 2>&1 >> $LOG
 cat $CWD/slack-desc > $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.txt
 md5sum $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz > $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz.md5
+
+echo "Cleaning up..."
+rm -r $PKG
 
 echo "All done."
 
