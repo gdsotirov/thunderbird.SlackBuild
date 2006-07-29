@@ -16,7 +16,7 @@ PKG=$TMP/package-mozilla-thunderbird
 # Thanks to the folks at the Mozilla Foundation for permission to
 # distribute this, and for all the great work!  :-)
 
-VERSION=1.5.0.4
+VERSION=1.5.0.5
 ARCH=i686
 LOCALE=bg
 BUILD=1
@@ -51,12 +51,12 @@ convert $PKG/usr/lib/thunderbird-$VERSION/icons/mozicon50.xpm $PKG/usr/share/pix
 echo "Prepring package..."
 mkdir $PKG/install
 cp $CWD/slack-desc $PKG/install/slack-desc
-mkdir -p $PKG/usr/src/slackbuild/thunderbird
-cp $CWD/mozilla-thunderbird-simple.diff.gz $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird-simple.diff.gz
-cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird-firefox.txt.gz
-cp $CWD/mozilla-thunderbird.SlackBuild $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird.SlackBuild
-cp $CWD/mozilla-thunderbird.desktop $PKG/usr/src/slackbuild/thunderbird/mozilla-thunderbird.desktop
-cp $CWD/slack-desc $PKG/usr/src/slackbuild/thunderbird/slack-desc
+mkdir -p $PKG/usr/src/slackbuilds/thunderbird
+cp $CWD/mozilla-thunderbird-simple.diff.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-simple.diff.gz
+cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-firefox.txt.gz
+cp $CWD/mozilla-thunderbird.SlackBuild $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.SlackBuild
+cp $CWD/mozilla-thunderbird.desktop $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.desktop
+cp $CWD/slack-desc $PKG/usr/src/slackbuilds/thunderbird/slack-desc
 
 echo "Building package..."
 cd $PKG
