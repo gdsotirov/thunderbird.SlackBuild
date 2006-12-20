@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Exec=thunderbird
-Icon=/usr/share/pixmaps/thunderbird.png
+Icon=thunderbird
 Type=Application
 Categories=Application;Network;
 Name=Thunderbird
