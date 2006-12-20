@@ -35,8 +35,8 @@ mkdir -p $PKG/usr/lib
   ln -sf thunderbird-$VERSION thunderbird
   cd thunderbird-$VERSION
   echo "Patching some files..."
-  zcat $CWD/mozilla-thunderbird-simple.diff.gz | sed s/VERSION/$VERSION/ | patch -p1 --verbose --backup --suffix=.orig 2>&1 >> $LOG
-  zcat $CWD/mozilla-thunderbird-firefox.txt.gz >> defaults/pref/mailnews.js
+  cat $CWD/mozilla-thunderbird-simple.diff | sed s/VERSION/$VERSION/ | patch -p1 --verbose --backup --suffix=.orig 2>&1 >> $LOG
+  cat $CWD/mozilla-thunderbird-firefox.txt >> defaults/pref/mailnews.js
 )
 mkdir -p $PKG/usr/bin
 ( cd $PKG/usr/bin
@@ -52,8 +52,8 @@ echo "Prepring package..."
 mkdir $PKG/install
 cp $CWD/slack-desc $PKG/install/slack-desc
 mkdir -p $PKG/usr/src/slackbuilds/thunderbird
-cp $CWD/mozilla-thunderbird-simple.diff.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-simple.diff.gz
-cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-firefox.txt.gz
+cp $CWD/mozilla-thunderbird-simple.diff $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-simple.diff
+cp $CWD/mozilla-thunderbird-firefox.txt $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-firefox.txt
 cp $CWD/mozilla-thunderbird.SlackBuild $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.SlackBuild
 cp $CWD/mozilla-thunderbird.desktop $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.desktop
 cp $CWD/slack-desc $PKG/usr/src/slackbuilds/thunderbird/slack-desc
