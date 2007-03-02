@@ -1,11 +1,7 @@
-#/bin/sh
-
-. /etc/slack-package.conf
-
-CWD=`pwd`
-TMP=${TMP:-/tmp}
-PKG=$TMP/package-mozilla-thunderbird
-
+#!/bin/sh
+#
+# Slackware build script for Mozilla Thunderbird
+#
 # This is not a source build script.  Rather, it builds a Slackware
 # package from the official binary tarball available from mozilla.org.
 # Using the official binaries seems like the most direct way to satify
@@ -16,56 +12,79 @@ PKG=$TMP/package-mozilla-thunderbird
 # Thanks to the folks at the Mozilla Foundation for permission to
 # distribute this, and for all the great work!  :-)
 
-VERSION=1.5.0.8
+# Written by Georgi D. Sotirov <gdsotirov@dir.bg>
+# Based on the original slackware script
+
+. /etc/slack-package.conf
+
+CWD=`pwd`
+TMP=${TMP:-/tmp}
+
+
+NAME=mozilla-thunderbird
+VERSION=1.5.0.10
 ARCH=i686
 LOCALE=bg
 BUILD=1
 
-LOG=$CWD/build.log
+PKG=$TMP/package-thunderbird
 
 if [ ! -d $TMP ]; then
   mkdir -p $TMP
 fi
+
 rm -rf $PKG
 mkdir -p $PKG/usr/lib
 ( cd $PKG/usr/lib
   echo "Extracting files..."
-  tar xzf $CWD/thunderbird-$VERSION.tar.gz 2>&1 > $LOG
-  mv thunderbird thunderbird-$VERSION
-  ln -sf thunderbird-$VERSION thunderbird
-  cd thunderbird-$VERSION
+  tar xzf $CWD/$NAME-$VERSION.tar.gz
+  mv $NAME $NAME-$VERSION
+  ln -sf $NAME-$VERSION $NAME
+  cd $NAME-$VERSION
   echo "Patching some files..."
-  zcat $CWD/mozilla-thunderbird-simple.diff.gz | sed s/VERSION/$VERSION/ | patch -p1 --verbose --backup --suffix=.orig 2>&1 >> $LOG
-  zcat $CWD/mozilla-thunderbird-firefox.txt.gz >> defaults/pref/mailnews.js
-)
+  zcat $CWD/$NAME-simple.diff.gz | sed s/VERSION/$VERSION/ | patch -p1 --verbose --backup --suffix=.orig
+  zcat $CWD/$NAME-firefox.txt.gz >> defaults/pref/mailnews.js )
 mkdir -p $PKG/usr/bin
 ( cd $PKG/usr/bin
-  ln -sf /usr/lib/thunderbird-$VERSION/thunderbird .
-  chown -R root:bin .
-)
-echo "Configuring environment..."
-mkdir -p $PKG/usr/share/applications
-cp $CWD/mozilla-thunderbird.desktop $PKG/usr/share/applications/mozilla-thunderbird.desktop
-mkdir -p $PKG/usr/share/pixmaps
-convert $PKG/usr/lib/thunderbird-$VERSION/icons/mozicon50.xpm $PKG/usr/share/pixmaps/thunderbird.png
-echo "Prepring package..."
+  ln -sf /usr/lib/$NAME-$VERSION/$NAME . )
+( cd $PKG; bin_perms )
+
+echo "*** Configuring environment..."
+install -m 755 -d $PKG/usr/share/applications
+install -m 644 $CWD/$NAME.desktop $PKG/usr/share/applications/$NAME.desktop
+install -m 755 -d $PKG/opt/kde/share/icons/hicolor/48x48
+install -m 644 $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
+               $PKG/opt/kde/share/icons/hicolor/48x48/$NAME.png
+install -m 755 -d $PKG/opt/kde/share/icons/hicolor/32x32
+convert -scale 32x32 \
+        $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
+        $PKG/opt/kde/share/icons/hicolor/32x32/$NAME.png
+install -m 755 -d $PKG/opt/kde/share/icons/hicolor/16x16
+convert $PKG/usr/lib/$NAME-$VERSION/icons/mozicon16.xpm \
+        $PKG/opt/kde/share/icons/hicolor/16x16/$NAME.png
+install -m 755 -d $PKG/usr/share/pixmaps
+convert $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
+        $PKG/usr/share/pixmaps/$NAME.png
+echo "*** Prepring package..."
 mkdir $PKG/install
-cp $CWD/slack-desc $PKG/install/slack-desc
-mkdir -p $PKG/usr/src/slackbuilds/thunderbird
-cp $CWD/mozilla-thunderbird-simple.diff.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-simple.diff.gz
-cp $CWD/mozilla-thunderbird-firefox.txt.gz $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird-firefox.txt.gz
-cp $CWD/mozilla-thunderbird.SlackBuild $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.SlackBuild
-cp $CWD/mozilla-thunderbird.desktop $PKG/usr/src/slackbuilds/thunderbird/mozilla-thunderbird.desktop
-cp $CWD/slack-desc $PKG/usr/src/slackbuilds/thunderbird/slack-desc
+install -m 644 $CWD/slack-desc $PKG/install/slack-desc
+install -m 755 -d $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/$NAME.diff.gz $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/$NAME-firefox.txt.gz $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/$NAME.SlackBuild     $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/$NAME.desktop        $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/slack-desc           $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
 
-echo "Building package..."
+echo "*** Building package..."
+PKG_DIR=${PKG_DIR:-$TMP}
 cd $PKG
-makepkg -l y -c n $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz 2>&1 >> $LOG
-cat $CWD/slack-desc > $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.txt
-md5sum $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz > $TMP/mozilla-thunderbird-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz.md5
+makepkg -l y -c n $PKG_DIR/$NAME-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz
+( cd $PKG_DIR
+  cat $CWD/slack-desc > $NAME-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.txt
+  md5sum $NAME-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz > $NAME-$VERSION$LOCALE-$ARCH-$BUILD$MYIN.tgz.md5)
 
-echo "Cleaning up..."
+echo "*** Cleaning up..."
 rm -r $PKG
 
-echo "All done."
+echo "*** All done."
 
