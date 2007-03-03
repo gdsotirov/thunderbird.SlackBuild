@@ -22,7 +22,7 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=1.5.0.9
+VERSION=1.5.0.10
 ARCH=i686
 LOCALE=bg
 BUILD=1
@@ -46,8 +46,8 @@ mkdir -p $PKG/usr/lib
   cat $CWD/$NAME-firefox.txt >> defaults/pref/mailnews.js )
 mkdir -p $PKG/usr/bin
 ( cd $PKG/usr/bin
-  ln -sf /usr/lib/$NAME-$VERSION/$NAME .
-  chown -R root:bin . )
+  ln -sf /usr/lib/$NAME-$VERSION/$NAME . )
+bin_perms $PKG
 
 echo "*** Configuring environment..."
 install -m 755 -d $PKG/usr/share/applications
