@@ -1,11 +1,11 @@
---- thunderbird/thunderbird.orig	2007-02-22 07:05:04.000000000 +0200
-+++ thunderbird/thunderbird	2007-04-19 09:36:00.000000000 +0200
+--- thunderbird/thunderbird.orig	2007-06-04 21:31:51.000000000 +0300
++++ thunderbird/thunderbird	2007-06-19 00:30:04.000000000 +0300
 @@ -92,8 +92,8 @@
  #uncomment for debugging
  #set -x
  
--moz_libdir=/usr/local/lib/thunderbird-2.0.0.0
--MRE_HOME=/usr/local/lib/mre/mre-2.0.0.0
+-moz_libdir=/usr/local/lib/thunderbird-2.0.0.4
+-MRE_HOME=/usr/local/lib/mre/mre-2.0.0.4
 +moz_libdir=/usr/lib/thunderbird-VERSION
 +MRE_HOME=/usr/lib/mre/mre-VERSION
  
