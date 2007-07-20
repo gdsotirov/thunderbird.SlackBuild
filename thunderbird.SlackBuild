@@ -22,10 +22,13 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=2.0.0.4
+VERSION=2.0.0.5
 ARCH=i686
 LOCALE=bg
 BUILD=1
+KDE_PATH=/usr
+
+TMP=${TMP:-/tmp}
 
 PKG=$TMP/package-thunderbird
 
@@ -37,7 +40,7 @@ rm -rf $PKG
 mkdir -p $PKG/usr/lib
 ( cd $PKG/usr/lib
   echo "Extracting files..."
-  tar xzf $CWD/$NAME-$VERSION.tar.gz
+  tar xzvf $CWD/$NAME-$VERSION.tar.gz
   mv $NAME $NAME-$VERSION
   ln -sf $NAME-$VERSION $NAME
   cd $NAME-$VERSION
@@ -51,16 +54,16 @@ mkdir -p $PKG/usr/bin
 echo "*** Configuring environment..."
 install -m 755 -d $PKG/usr/share/applications
 install -m 644 $CWD/thunderbird.desktop $PKG/usr/share/applications/$NAME.desktop
-install -m 755 -d $PKG/opt/kde/share/icons/hicolor/48x48
+install -m 755 -d $PKG/$KDE_PATH/share/icons/hicolor/48x48
 install -m 644 $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
-               $PKG/opt/kde/share/icons/hicolor/48x48/$NAME.png
-install -m 755 -d $PKG/opt/kde/share/icons/hicolor/32x32
+               $PKG/$KDE_PATH/share/icons/hicolor/48x48/$NAME.png
+install -m 755 -d $PKG/$KDE_PATH/share/icons/hicolor/32x32
 convert -scale 32x32 \
         $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
-        $PKG/opt/kde/share/icons/hicolor/32x32/$NAME.png
-install -m 755 -d $PKG/opt/kde/share/icons/hicolor/16x16
+        $PKG/$KDE_PATH/share/icons/hicolor/32x32/$NAME.png
+install -m 755 -d $PKG/$KDE_PATH/share/icons/hicolor/16x16
 convert $PKG/usr/lib/$NAME-$VERSION/icons/mozicon16.xpm \
-        $PKG/opt/kde/share/icons/hicolor/16x16/$NAME.png
+        $PKG/$KDE_PATH/share/icons/hicolor/16x16/$NAME.png
 install -m 755 -d $PKG/usr/share/pixmaps
 convert $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
         $PKG/usr/share/pixmaps/$NAME.png
