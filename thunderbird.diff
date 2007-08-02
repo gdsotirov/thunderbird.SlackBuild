@@ -4,8 +4,8 @@
  #uncomment for debugging
  #set -x
  
--moz_libdir=/usr/local/lib/thunderbird-2.0.0.5
--MRE_HOME=/usr/local/lib/mre/mre-2.0.0.5
+-moz_libdir=/usr/local/lib/thunderbird-2.0.0.6
+-MRE_HOME=/usr/local/lib/mre/mre-2.0.0.6
 +moz_libdir=/usr/lib/thunderbird-VERSION
 +MRE_HOME=/usr/lib/mre/mre-VERSION
  
