@@ -1,19 +1,8 @@
 #!/bin/sh
 #
 # Slackware build script for Mozilla Thunderbird
-#
-# This is not a source build script.  Rather, it builds a Slackware
-# package from the official binary tarball available from mozilla.org.
-# Using the official binaries seems like the most direct way to satify
-# the Mozilla project's concerns about quality control (and thus to
-# provide the most quality-certified package possible), and therefore
-# be able to use the official trademarks and logos.
-#
-# Thanks to the folks at the Mozilla Foundation for permission to
-# distribute this, and for all the great work!  :-)
-
 # Written by Georgi D. Sotirov <gdsotirov@dir.bg>
-# Based on the original slackware script
+# Based on the original build script by Patrick Volkerding <volkerdi@slackware.com>
 
 . ../slack-package.conf
 
@@ -22,7 +11,7 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=2.0.0.5
+VERSION=2.0.0.6
 ARCH=i686
 LOCALE=bg
 BUILD=1
