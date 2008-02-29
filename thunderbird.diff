@@ -1,6 +1,6 @@
 95,96c95,96
-< moz_libdir=/usr/local/lib/thunderbird-2.0.0.9
-< MRE_HOME=/usr/local/lib/mre/mre-2.0.0.9
+< moz_libdir=/usr/local/lib/thunderbird-2.0.0.12
+< MRE_HOME=/usr/local/lib/mre/mre-2.0.0.12
 ---
 > moz_libdir=/usr/lib/thunderbird-VERSION
 > MRE_HOME=/usr/lib/mre/mre-VERSION
