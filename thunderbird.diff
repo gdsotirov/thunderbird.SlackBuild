@@ -1,6 +1,13 @@
-95,96c95,96
-< moz_libdir=/usr/local/lib/thunderbird-2.0.0.12
-< MRE_HOME=/usr/local/lib/mre/mre-2.0.0.12
----
-> moz_libdir=/usr/lib/thunderbird-VERSION
-> MRE_HOME=/usr/lib/mre/mre-VERSION
+--- thunderbird/thunderbird.orig	2007-06-04 21:31:51.000000000 +0300
++++ thunderbird/thunderbird	2007-06-19 00:30:04.000000000 +0300
+@@ -92,8 +92,8 @@
+ #uncomment for debugging
+ #set -x
+ 
+-moz_libdir=/usr/local/lib/thunderbird-2.0.0.14
+-MRE_HOME=/usr/local/lib/mre/mre-2.0.0.14
++moz_libdir=/usr/lib/thunderbird-VERSION
++MRE_HOME=/usr/lib/mre/mre-VERSION
+ 
+ # Use run-mozilla.sh in the current dir if it exists
+ # If not, then start resolving symlinks until we find run-mozilla.sh
