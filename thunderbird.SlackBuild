@@ -11,7 +11,7 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=2.0.0.14
+VERSION=2.0.0.17
 ARCH=i686
 LOCALE=bg
 BUILD=1
@@ -34,7 +34,7 @@ mkdir -p $PKG/usr/lib
   ln -sf $NAME-$VERSION $NAME
   cd $NAME-$VERSION
   echo "Patching some files..."
-  cat $CWD/$NAME.diff | sed s/VERSION/$VERSION/ | patch -p1 --verbose --backup --suffix=.orig
+  cat $CWD/$NAME.diff | sed s/VERSION/$VERSION/ | patch thunderbird --backup --suffix=.orig
   cat $CWD/$NAME-firefox.txt >> defaults/pref/mailnews.js )
 mkdir -p $PKG/usr/bin
 ( cd $PKG/usr/bin
@@ -59,12 +59,13 @@ convert $PKG/usr/lib/$NAME-$VERSION/icons/mozicon50.xpm \
 echo "*** Prepring package..."
 mkdir $PKG/install
 install -m 644 $CWD/slack-desc $PKG/install/slack-desc
+
 install -m 755 -d $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/slack-desc        $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
+install -m 644 $CWD/$NAME.desktop     $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
 install -m 644 $CWD/$NAME.diff        $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
 install -m 644 $CWD/$NAME-firefox.txt $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
 install -m 644 $CWD/$NAME.SlackBuild  $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
-install -m 644 $CWD/$NAME.desktop     $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
-install -m 644 $CWD/slack-desc        $PKG/usr/src/slackbuilds/$NAME-${VERSION}${LOCALE}
 
 echo "*** Building package..."
 PKG_DIR=${PKG_DIR:-$TMP}
