@@ -1,5 +1,5 @@
-gconf >= 2.20
-gnome-vfs >= 2.20
-libbonobo >= 2.20
-libgnome >= 2.20
-ORBit2 >= 2.14
+gconf >= 2.26
+gnome-vfs >= 2.26
+libbonobo >= 2.24
+libgnome >= 2.26
+ORBit2 >= 2.14.17
