@@ -11,10 +11,10 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=2.0.0.23
+VERSION=2.0.0.24
 ARCH=i686
 LOCALE=bg
-BUILD=1
+BUILD=${BUILD:-1}
 KDE_PATH=/usr
 
 TMP=${TMP:-/tmp}
