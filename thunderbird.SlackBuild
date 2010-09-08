@@ -14,10 +14,10 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=3.0.6
+VERSION=3.0.7
 ARCH=i686
 LOCALE=bg
-BUILD=1
+BUILD=${BUILD:-1}
 KDE_PATH=/usr
 
 CWD=`pwd`
