@@ -7,14 +7,14 @@
 # This is not a source build script.  Rather, it builds a Slackware
 # package from the official binary tarball available from mozilla.org.
 
-. ../slack-package.conf
+. ../../slack-package.conf
 
 CWD=`pwd`
 TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=3.1.14
+VERSION=5.0
 ARCH=i686
 LOCALE=bg
 BUILD=${BUILD:-1}
