@@ -1,11 +1,12 @@
-thunderbird: Thunderbird (Mail & News application)
+thunderbird: Thunderbird (Mail/News/RSS application)
 thunderbird:
 thunderbird: Mozilla Thunderbird is a the application with which makes
 thunderbird: emailing safer, faster, and easier than ever before with the
 thunderbird: industry's best implementations of features such as intelligent
-thunderbird: spam filters, quick search, feed reader, customizable view and
-thunderbird: much more. Thunderbird 2 is the next generation release of the
-thunderbird: award-winning Thunderbird email client from Mozilla.
-thunderbird:
+thunderbird: spam filters, quick search, feed reader, tabs, customizable view
+thunderbird: and much more.
+thunderbird: Thunderbird 5 is the next rapid release of the award-winning
+thunderbird: email client from Mozilla which brings many improvements and
+thunderbird: exciting new features.
 thunderbird:
 thunderbird: Packaged by Georgi D. Sotirov <gdsotirov@dir.bg>
