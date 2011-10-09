@@ -14,7 +14,7 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=5.0
+VERSION=7.0
 ARCH=i686
 LOCALE=bg
 BUILD=${BUILD:-1}
