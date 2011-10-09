@@ -1,12 +1,12 @@
 diff -urNad thunderbird-orig/thunderbird thunderbird/thunderbird
---- thunderbird-orig/thunderbird	2010-01-01 10:00:00.000000000 +0200
-+++ thunderbird/thunderbird	2011-10-01 13:12:55.000000000 +0300
+--- thunderbird-orig/thunderbird	2011-09-23 08:53:33.000000000 +0300
++++ thunderbird/thunderbird	2011-10-05 00:24:56.000000000 +0300
 @@ -50,7 +50,7 @@
  #uncomment for debugging
  #set -x
  
--moz_libdir=/usr/local/lib/thunderbird-5.0
-+moz_libdir=/usr/lib/thunderbird-5.0
+-moz_libdir=/usr/local/lib/thunderbird-7.0
++moz_libdir=/usr/lib/thunderbird-7.0
  
  # Use run-mozilla.sh in the current dir if it exists
  # If not, then start resolving symlinks until we find run-mozilla.sh
