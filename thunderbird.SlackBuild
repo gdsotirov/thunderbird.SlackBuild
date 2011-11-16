@@ -14,11 +14,15 @@ TMP=${TMP:-/tmp}
 
 
 NAME=thunderbird
-VERSION=7.0.1
-ARCH=i686
+VERSION=8.0
+ARCH=${ARCH:-i686}
 LOCALE=bg
 BUILD=${BUILD:-1}
 KDE_PATH=/usr
+
+if [ "$ARCH" = "i486" -o "$ARCH" = "i586" -o "$ARCH" = "i686" ]; then
+  ARCH="i686"
+fi
 
 CWD=`pwd`
 TMP=${TMP:-/tmp}
@@ -39,10 +43,10 @@ if [ -e $PKG -a -d $PKG ]; then
   echo "Package creation directory '$PKG' already exists! Please, move it or remove it."
   exit 2
 fi
+PKG_LIBDIR=$PKG/usr/lib${LIBDIRSUFFIX}
+mkdir -p $PKG_LIBDIR
 
-mkdir -p $PKG/usr/lib
-
-cd $PKG/usr/lib
+cd $PKG_LIBDIR
 tar -jxvf $CWD/$NAME-$VERSION.tar.bz2
 mv $NAME $NAME-$VERSION
 ln -sf $NAME-$VERSION $NAME
@@ -54,35 +58,34 @@ cat $CWD/$NAME-firefox.txt >> defaults/pref/mailnews.js
 
 mkdir -p $PKG/usr/bin
 ( cd $PKG/usr/bin
-  ln -sf /usr/lib/$NAME-$VERSION/$NAME .
+  ln -sf /usr/lib${LIBDIRSUFFIX}/$NAME-$VERSION/$NAME .
 )
 
 # Creating environment integration items
-install -m 755 -d $PKG/usr/lib/mozilla/plugins
+install -m 755 -d $PKG_LIBDIR/mozilla/plugins
 
 install -m 755 -d $PKG/usr/share/applications
 install -m 644 $CWD/$NAME.desktop $PKG/usr/share/applications/$NAME.desktop
 
 install -m 755 -d $PKG/usr/share/icons/hicolor/48x48
-install -m 644 $PKG/usr/lib/$NAME-$VERSION/chrome/icons/default/default48.png \
+install -m 644 $PKG_LIBDIR/$NAME-$VERSION/chrome/icons/default/default48.png \
                $PKG/$KDE_PATH/share/icons/hicolor/48x48/$NAME.png
 install -m 755 -d $PKG/usr/share/icons/hicolor/32x32
-install -m 644 $PKG/usr/lib/$NAME-$VERSION/chrome/icons/default/default32.png \
+install -m 644 $PKG_LIBDIR/$NAME-$VERSION/chrome/icons/default/default32.png \
                $PKG/$KDE_PATH/share/icons/hicolor/32x32/$NAME.png
 install -m 755 -d $PKG/usr/share/icons/hicolor/16x16
-install -m 644 $PKG/usr/lib/$NAME-$VERSION/chrome/icons/default/default16.png \
+install -m 644 $PKG_LIBDIR/$NAME-$VERSION/chrome/icons/default/default16.png \
                $PKG/$KDE_PATH/share/icons/hicolor/16x16/$NAME.png
 
 install -m 755 -d $PKG/usr/share/pixmaps
-install -m 644 $PKG/usr/lib/$NAME-$VERSION/chrome/icons/default/default32.png \
+install -m 644 $PKG_LIBDIR/$NAME-$VERSION/chrome/icons/default/default32.png \
                $PKG/usr/share/pixmaps/$NAME.png
 
 bin_perms $PKG
 
 # Creating documentation
 install -m 755 -d $PKG/usr/doc/$NAME-$VERSION$LOCALE
-install -m 644 $PKG/usr/lib/$NAME-$VERSION/README.txt \
-               $PKG/usr/doc/$NAME-$VERSION$LOCALE/README
+install -m 644 $CWD/README.in $PKG/usr/doc/$NAME-$VERSION$LOCALE/README
 install -m 644 $CWD/MPLLIC    $PKG/usr/doc/$NAME-$VERSION$LOCALE/COPYING
 
 # Preparing package
