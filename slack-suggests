@@ -1,6 +1,9 @@
 GConf >= 2.32.1
+NetworkManager >= 0.7
 ORBit2 >= 2.14.19
 avahi >= 0.6.30
+dbus >= 1.4.1
+dbus-glib >= 0.88
 gdk-pixbuf2 >= 2.23.3
 gnome-vfs >= 2.24.4
 libbonobo >= 2.32.1
