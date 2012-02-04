@@ -3,8 +3,6 @@ atk >= 1.32
 cairo >= 1.10.2
 coreutils >= 8.11
 cxxlibs >= 6.0.14 | gcc-g++ >= 4.5.2
-dbus >= 1.4.1
-dbus-glib >= 0.88
 expat >= 2.0.1
 fontconfig >= 2.8.0
 freetype >= 2.4.4
