@@ -9,12 +9,8 @@
 
 . ../../slack-package.conf
 
-CWD=`pwd`
-TMP=${TMP:-/tmp}
-
-
 NAME=thunderbird
-VERSION=14.0
+VERSION=15.0
 ARCH=${ARCH:-i686}
 LOCALE=bg
 BUILD=${BUILD:-1}
