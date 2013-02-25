@@ -10,7 +10,7 @@
 . ../../slack-package.conf
 
 NAME=thunderbird
-VERSION=17.0.2
+VERSION=17.0.3
 ARCH=${ARCH:-i686}
 LOCALE=bg
 BUILD=${BUILD:-1}
